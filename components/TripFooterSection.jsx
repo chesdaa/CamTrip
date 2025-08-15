@@ -1,14 +1,18 @@
 "use client"
 
+import { useState } from "react"
 import { useRouter } from "next/navigation"
 import Image from "next/image"
+import { useAppContext } from "../app/providers"
+import AuthModals from "./AuthModals"
 
 export default function TripFooterSection() {
   const router = useRouter()
+  const { state } = useAppContext()
+  const [showAuthModal, setShowAuthModal] = useState(null)
 
   const handleSignup = () => {
-    // This would typically open a signup modal
-    console.log("Open signup modal")
+    setShowAuthModal("signup")
   }
 
   return (
@@ -43,16 +47,24 @@ export default function TripFooterSection() {
               >
                 Plan Your Trip
               </button>
-              <button 
-                className="btn-secondary" 
-                onClick={handleSignup}
-              >
-                Register Now
-              </button>
+              {!state.user && (
+                <button 
+                  className="btn-secondary" 
+                  onClick={handleSignup}
+                >
+                  Register Now
+                </button>
+              )}
             </div>
           </div>
         </div>
       </div>
+
+      <AuthModals
+        showModal={showAuthModal}
+        onClose={() => setShowAuthModal(null)}
+        onSwitch={(type) => setShowAuthModal(type)}
+      />
     </section>
   )
 }

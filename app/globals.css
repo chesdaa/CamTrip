@@ -530,11 +530,13 @@ body {
   padding: 0;
   text-align: center;
   position: relative;
-  overflow: hidden;
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 .hero-background {
@@ -4217,6 +4219,8 @@ body {
 
 .attraction-info {
   padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
 }
 
 .attraction-info h3 {
