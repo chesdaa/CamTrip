@@ -78,13 +78,44 @@ export default function TripWizard() {
     setIsGenerating(true)
 
     try {
-      const tripPlan = generateTripPlan(wizardData)
+      // Ensure we save the final step data before generating
+      saveStepData(currentStep)
+      
+      // Wait a moment for state to update
+      await new Promise(resolve => setTimeout(resolve, 100))
+      
+      // Get the most current wizard data including the final step
+      const finalWizardData = { ...wizardData }
+      const stepElement = document.querySelector(`[data-step="${currentStep}"]`)
+      if (stepElement) {
+        const inputs = stepElement.querySelectorAll('input[type="radio"]:checked, input[type="checkbox"]:checked')
+        inputs.forEach((input) => {
+          const name = input.name
+          const value = input.value
+          if (input.type === "checkbox") {
+            if (!finalWizardData[name]) {
+              finalWizardData[name] = []
+            }
+            finalWizardData[name].push(value)
+          } else {
+            finalWizardData[name] = value
+          }
+        })
+      }
+      
+      // Clear any existing trip plan first
+      dispatch({ type: "UPDATE_TRIP_PLAN", payload: [] })
+      
+      console.log("Final wizard data before generation:", finalWizardData)
+      const tripPlan = generateTripPlan(finalWizardData)
+      console.log("Generated trip plan:", tripPlan)
+      
       dispatch({ type: "UPDATE_TRIP_PLAN", payload: tripPlan })
 
       setToast({
         type: "success",
         title: "Trip Plan Generated!",
-        message: "Your personalized trip plan is ready",
+        message: `Your ${finalWizardData.days || '7'}-day trip plan is ready`,
       })
 
       setTimeout(() => {
