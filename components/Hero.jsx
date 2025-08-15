@@ -8,8 +8,8 @@ export default function Hero() {
       <div className="hero-background">
         <div className="hero-image">
           <Image
-            src="/images/home_background.webp"
-            alt="Cambodia landscape"
+            src="/images/Siem Reap.jpg"
+            alt="Siem Reap - Angkor Wat temples at sunset"
             fill
             style={{ objectFit: "cover", width: "100%", height: "100%", objectPosition: "center center" }}
             priority

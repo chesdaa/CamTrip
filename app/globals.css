@@ -624,10 +624,10 @@ body {
 
 .option {
   display: flex;
-  align-items: center;
-  padding: 0.7rem;
+  align-items: flex-start;
+  padding: 1rem;
   border: 2px solid #e0e0e0;
-  border-radius: 8px;
+  border-radius: 12px;
   cursor: pointer;
   transition: all 0.3s ease;
   background: white;
@@ -637,20 +637,98 @@ body {
 .option:hover {
   border-color: var(--primary-color);
   background: #fafafa;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .option input[type="radio"],
 .option input[type="checkbox"] {
-  margin-right: 0.8rem;
-  transform: scale(1.1);
+  margin-right: 1rem;
+  margin-top: 0.2rem;
+  transform: scale(1.2);
+  accent-color: var(--primary-color);
+  flex-shrink: 0;
 }
 
-.option input[type="radio"]:checked + span,
-.option input[type="checkbox"]:checked + span {
+.option input[type="radio"]:checked + .option-content,
+.option input[type="checkbox"]:checked + .option-content {
   color: var(--primary-color);
-  font-weight: 600;
 }
 
+.option-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  flex: 1;
+}
+
+.option-title {
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--text-color);
+}
+
+.option-desc {
+  font-size: 0.85rem;
+  color: var(--gray);
+  line-height: 1.4;
+}
+
+.wizard-navigation {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.prev-btn,
+.next-btn {
+  padding: 14px 28px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  min-width: 120px;
+  outline: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.prev-btn {
+  background: #f8f9fa;
+  color: #6b7280;
+  border: 2px solid #e5e7eb;
+}
+
+.prev-btn:hover:not(:disabled) {
+  background: #e5e7eb;
+  color: #4b5563;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.next-btn {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  border: none;
+}
+
+.next-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, var(--hover-color), var(--hover-secondary));
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(211, 47, 47, 0.3);
+}
+
+.prev-btn:disabled,
+.next-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Legacy support for old class names */
 .wizard-controls {
   display: flex;
   justify-content: space-between;
@@ -2744,6 +2822,55 @@ body {
   max-width: 400px;
   margin: 1rem;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Password Input Container */
+.password-input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-input-container input {
+  width: 100%;
+  padding-right: 3rem;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 0.75rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #6b7280;
+  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s;
+}
+
+.password-toggle:hover {
+  color: var(--primary-color);
+}
+
+/* Password Validation */
+.password-validation {
+  margin-top: 0.5rem;
+}
+
+.validation-error {
+  color: #dc2626;
+  font-size: 0.75rem;
+  margin-bottom: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.validation-error::before {
+  content: "•";
+  color: #dc2626;
 }
 
 .auth-modal-header {

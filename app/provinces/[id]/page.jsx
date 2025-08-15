@@ -319,7 +319,7 @@ export default function ProvinceDetailPage() {
                       <strong>{transport.name}</strong>
                       <span>{transport.price}</span>
                     </div>
-                    <a href="#" className="view-map-btn">📍 View on Map</a>
+                    <a href="https://maps.app.goo.gl/FvWTfMakCivDLTBq7?g_st=ipc" target="_blank" rel="noopener noreferrer" className="view-map-btn">📍 View on Map</a>
                   </div>
                 ))}
               </div>
@@ -331,7 +331,7 @@ export default function ProvinceDetailPage() {
                       <strong>{accommodation.name}</strong>
                       <span>{accommodation.price}</span>
                     </div>
-                    <a href="#" className="view-map-btn">📍 View on Map</a>
+                    <a href="https://maps.app.goo.gl/FvWTfMakCivDLTBq7?g_st=ipc" target="_blank" rel="noopener noreferrer" className="view-map-btn">📍 View on Map</a>
                   </div>
                 ))}
               </div>

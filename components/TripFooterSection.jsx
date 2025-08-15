@@ -17,11 +17,16 @@ export default function TripFooterSection() {
         <div className="trip-footer-content">
           <div className="trip-footer-image">
             <Image 
-              src="/images/Siem Reap.jpg" 
-              alt="Siem Reap - Angkor Wat" 
+              src="/images/trip.jpg" 
+              alt="Explore Cambodia - Beautiful Travel Destination" 
               width={400}
               height={300}
-              style={{ objectFit: "cover" }}
+              className="trip-footer-img"
+              style={{ 
+                objectFit: "cover",
+                borderRadius: "12px",
+                boxShadow: "0 8px 25px rgba(0, 0, 0, 0.2)"
+              }}
               onError={(e) => {
                 // Fallback to a placeholder if image doesn't exist
                 e.target.src = "/placeholder.svg?height=300&width=400"

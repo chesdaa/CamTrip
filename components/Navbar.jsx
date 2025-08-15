@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation"
 import { useAppContext } from "../app/providers"
 import AuthModals from "./AuthModals"
 import { Menu, X, User, LogOut, ChevronDown } from "lucide-react"
+import { removeAuthCookie } from "../lib/auth"
 
 export default function Navbar() {
   const { state, dispatch } = useAppContext()
@@ -37,6 +38,7 @@ export default function Navbar() {
   const handleLogout = () => {
     dispatch({ type: "LOGOUT" })
     localStorage.removeItem('user')
+    removeAuthCookie()
   }
 
   const navbarClasses = `navbar ${isScrolled ? "scrolled" : ""} ${!isHomepage ? "non-homepage" : ""}`
